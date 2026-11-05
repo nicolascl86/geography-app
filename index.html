@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Globetrotter — Geography Quiz</title>
+  <meta name="description" content="Test yourself on capitals, flags, continents and populations." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌍</text></svg>" />
+  <link rel="stylesheet" href="src/style.css" />
+</head>
+<body>
+  <main id="app" aria-live="polite">
+    <!-- Home -->
+    <section id="screen-home" class="screen">
+      <header class="hero">
+        <h1>Globetrotter</h1>
+        <p class="tagline">How well do you know the world?</p>
+      </header>
+
+      <h2 class="label">Difficulty</h2>
+      <div class="segmented" role="radiogroup" aria-label="Difficulty" id="difficulty">
+        <button role="radio" data-difficulty="easy" aria-checked="true">Easy</button>
+        <button role="radio" data-difficulty="medium" aria-checked="false">Medium</button>
+        <button role="radio" data-difficulty="hard" aria-checked="false">Hard</button>
+      </div>
+      <p class="hint" id="difficulty-hint"></p>
+
+      <h2 class="label">Choose a quiz</h2>
+      <div class="modes" id="modes">
+        <button class="mode" data-mode="capitals"><span class="icon">🏛️</span><span class="name">Capitals</span><span class="best" data-best="capitals"></span></button>
+        <button class="mode" data-mode="flags"><span class="icon">🚩</span><span class="name">Flags</span><span class="best" data-best="flags"></span></button>
+        <button class="mode" data-mode="continents"><span class="icon">🗺️</span><span class="name">Continents</span><span class="best" data-best="continents"></span></button>
+        <button class="mode" data-mode="population"><span class="icon">👥</span><span class="name">Population</span><span class="best" data-best="population"></span></button>
+        <button class="mode mode-wide" data-mode="mixed"><span class="icon">🎲</span><span class="name">Mixed bag</span><span class="best" data-best="mixed"></span></button>
+      </div>
+    </section>
+
+    <!-- Question -->
+    <section id="screen-quiz" class="screen" hidden>
+      <div class="topbar">
+        <button class="ghost" id="quit" aria-label="Quit to menu">✕</button>
+        <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="10" id="progress"><div id="progress-fill"></div></div>
+        <div class="score" id="score" aria-label="Score">0</div>
+      </div>
+      <div class="meta"><span id="counter"></span><span id="streak" class="streak"></span></div>
+
+      <h2 class="prompt" id="prompt"></h2>
+      <div class="flag-wrap" id="flag-wrap"></div>
+      <div class="options" id="options"></div>
+
+      <div class="feedback" id="feedback" hidden>
+        <p id="feedback-text"></p>
+        <button class="primary" id="next">Next →</button>
+      </div>
+    </section>
+
+    <!-- Results -->
+    <section id="screen-results" class="screen" hidden>
+      <h2 class="label">Round complete</h2>
+      <div class="big-score" id="final-score">0</div>
+      <p class="result-line" id="result-line"></p>
+      <p class="rating" id="rating"></p>
+      <p class="new-best" id="new-best" hidden>🏆 New personal best!</p>
+
+      <div class="actions">
+        <button class="primary" id="again">Play again</button>
+        <button class="secondary" id="share">Share score</button>
+        <button class="ghost" id="home">Menu</button>
+      </div>
+      <p class="toast" id="toast" hidden></p>
+
+      <details class="review" id="review-wrap">
+        <summary>Review your answers</summary>
+        <ol id="review"></ol>
+      </details>
+    </section>
+  </main>
+
+  <footer class="footer">Populations are rounded estimates. Flags via <a href="https://flagcdn.com" target="_blank" rel="noopener">flagcdn.com</a>.</footer>
+
+  <script type="module" src="src/app.js"></script>
+</body>
+</html>
